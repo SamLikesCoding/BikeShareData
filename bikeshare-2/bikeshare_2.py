@@ -174,10 +174,10 @@ def trip_duration_stats(df):
     start_time = time.time()
 
     # display total travel time
-    print("\n Total Travel Time : {}".format(df["Trip Duration"].sum()))
+    print("\n Total Travel Time : {} mins".format(df["Trip Duration"].sum()))
 
     # display mean travel time
-    print(" Mean Travel Time : {}".format(df["Trip Duration"].mean()))
+    print(" Mean Travel Time : {} mins".format(df["Trip Duration"].mean()))
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
 
@@ -215,6 +215,23 @@ def main():
             user_stats(df, True) # Other Cities
         else:
             user_stats(df, False) # For Washington
+
+        n = 0
+        stop_flag = False
+        while n < 400 and not stop_flag:
+            print("\n==== User Data Index :: {} ====\n".format(n))
+            print(df.loc[n])
+            if n%5 == 0:
+                while True:
+                    set_stop = input("\n\n Would you like to see more data yes or no : ")
+                    if set_stop.lower() == 'yes':
+                        break
+                    elif set_stop.lower() == 'no':
+                        stop_flag = True
+                        break
+                    else:
+                        print("\n Invalid Option!! \n")
+            n += 1
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':

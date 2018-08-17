@@ -218,12 +218,13 @@ def main():
 
         n = 0
         stop_flag = False
-        while n < 400 and not stop_flag:
+        df = load_data(city, 'all', 'all')
+        while n < len(df.index) and not stop_flag:
             print("\n==== User Data Index :: {} ====\n".format(n))
             print(df.loc[n])
-            if n%5 == 0:
+            if n%10 == 0 and n != 0:
                 while True:
-                    set_stop = input("\n\n Would you like to see more data yes or no : ")
+                    set_stop = input("\n\n Would you like to see more data (yes or no) : ")
                     if set_stop.lower() == 'yes':
                         break
                     elif set_stop.lower() == 'no':
